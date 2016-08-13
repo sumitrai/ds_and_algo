@@ -1,2 +1,5 @@
 # ds_and_algo
-Data Structures and Algorithms
+
+The purpose of this repository is to learn various Data Structures and Algorithms by implementing them myself.
+
+
