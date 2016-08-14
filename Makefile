@@ -1,5 +1,5 @@
-TOP_DIR=$(PWD)
-include $(TOP_DIR)/include.mk
+TOPDIR=$(PWD)
+include $(TOPDIR)/include.mk
 
 main: main.o $(ARCHIVE)
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
