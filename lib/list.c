@@ -63,19 +63,17 @@ void add_node_pos(struct slist **head, struct slist *node, int insert_at_pos)
     if (insert_at_pos <= 0)
 	insert_at_pos = 1;
     
-    for (count = 1, pos = headp; pos != NULL; pos = pos->next, count++) {
-	if (count == insert_at_pos) {
-	    break;
-	}
+    for (count = 1, pos = headp; (pos != NULL) && (count != insert_at_pos);
+         pos = pos->next, count++) {
 	prev_pos = pos;
     }
 
+    node->next = pos;
+    
     // insert at postion 1: make node the new head
     if (pos == headp) {
-	node->next = pos;
 	*head = node;
     } else {
-	node->next = pos;
 	prev_pos->next = node;
     }
 }
