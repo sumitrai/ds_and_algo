@@ -1,3 +1,6 @@
+/**
+ *
+ */
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -28,10 +31,8 @@ void add_node_beg(struct slist **head, struct slist *node)
     assert(head != NULL);
     assert(node != NULL);
     
-    void *tmp = *head;
     node->next = *head; 
     *head = node;
-
 }
 
 void add_node_end(struct slist *head, struct slist *node)
@@ -46,5 +47,35 @@ void add_node_end(struct slist *head, struct slist *node)
     if (prev_pos) {
 	prev_pos->next = node;
 	node->next = NULL;
+    }
+}
+
+/* if pos > length of linked list, insert at the end */ 
+void add_node_pos(struct slist **head, struct slist *node, int insert_at_pos)
+{
+    int count;
+    struct slist *pos, *prev_pos;
+    struct slist *headp = *head;
+
+    pos = prev_pos = NULL;
+
+    // fix invalid user input
+    if (insert_at_pos <= 0)
+	insert_at_pos = 1;
+    
+    for (count = 1, pos = headp; pos != NULL; pos = pos->next, count++) {
+	if (count == insert_at_pos) {
+	    break;
+	}
+	prev_pos = pos;
+    }
+
+    // insert at postion 1: make node the new head
+    if (pos == headp) {
+	node->next = pos;
+	*head = node;
+    } else {
+	node->next = pos;
+	prev_pos->next = node;
     }
 }
