@@ -37,6 +37,9 @@ void add_node_beg(struct slist **head, struct slist *node)
 
 void add_node_end(struct slist *head, struct slist *node)
 {
+    assert(head != NULL);
+    assert(node != NULL);
+    
     struct slist *pos, *prev_pos;
 
      pos = prev_pos = NULL;
@@ -53,6 +56,9 @@ void add_node_end(struct slist *head, struct slist *node)
 /* if pos > length of linked list, insert at the end */ 
 void add_node_pos(struct slist **head, struct slist *node, int insert_at_pos)
 {
+    assert(head != NULL);
+    assert(node != NULL);
+    
     int count;
     struct slist *pos, *prev_pos;
     struct slist *headp = *head;
@@ -63,19 +69,17 @@ void add_node_pos(struct slist **head, struct slist *node, int insert_at_pos)
     if (insert_at_pos <= 0)
 	insert_at_pos = 1;
     
-    for (count = 1, pos = headp; pos != NULL; pos = pos->next, count++) {
-	if (count == insert_at_pos) {
-	    break;
-	}
+    for (count = 1, pos = headp; (pos != NULL) && (count != insert_at_pos);
+         pos = pos->next, count++) {
 	prev_pos = pos;
     }
 
+    node->next = pos;
+    
     // insert at postion 1: make node the new head
     if (pos == headp) {
-	node->next = pos;
 	*head = node;
     } else {
-	node->next = pos;
 	prev_pos->next = node;
     }
 }

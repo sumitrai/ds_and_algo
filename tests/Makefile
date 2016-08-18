@@ -7,11 +7,11 @@ BINS=$(SRC_FILES:.c=)
 
 all: slist slist_prob1
 
-slist_prob1: slist_prob1.o
-	$(CC) $< $(ARCHIVE) -o $@
+slist_prob1: slist_prob1.o $(ARCHIVE)
+	$(CC) $^ $(ARCHIVE) -o $@
 
-slist: slist.o
-	$(CC) $< $(ARCHIVE) -o $@
+slist: slist.o $(ARCHIVE)
+	$(CC) $^ -o $@
 
 .PHONY: run
 run:
