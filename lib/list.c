@@ -7,13 +7,25 @@
 
 #include "list.h"
 
-void print_all_slist(struct slist *head)
+void print_all_slist(struct slist *head, int flags)
 {
     struct slist *pos = NULL;
 
     printf("=\n");
     for_each_node(pos, head) {
-        PRINT_NODE(pos);
+      if (flags & PRINT_SLIST_FLAG_PRINT_VAL_ONLY) {
+	  if (flags & PRINT_SLIST_FLAG_SKIP_NL_BW_VAL) {
+	      if (pos->next) {
+		  printf("%d, ", pos->val);
+	      } else {
+		  printf("%d\n", pos->val);
+	      }
+	  } else {
+	      printf("%d\n", pos->val);
+	  }
+      } else {
+	  PRINT_NODE(pos);
+      }
     }
     printf("=\n");
 }
