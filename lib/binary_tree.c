@@ -14,9 +14,11 @@ struct bt_node *bt_new_node(int val)
 
 void bt_insert(struct bt_node **node, int val)
 {
-    if (*node == NULL)
+    assert(node != NULL);
+    if (*node == NULL) {
         *node = bt_new_node(val);
-    else if (val <= (*node)->data)
+        assert(*node != NULL);
+    } else if (val <= (*node)->data)
         bt_insert(&(*node)->left, val);
     else
         bt_insert(&(*node)->right, val);
