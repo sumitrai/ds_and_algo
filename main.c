@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 #include "binary_tree.h"
 
@@ -7,7 +9,8 @@ int main(int argc, char *argv[], char *envp[])
     // Note: Previous Linked-List feedback applied here - root is now on heap
     struct bt_node *root = bt_new_node(10);
     if (root == NULL) {
-            fprintf(stderr, "Failed to allocate memory for root node\n");
+            fprintf(stderr, "Failed to allocate memory for root node: %s\n",
+                    strerror(errno));
             return 1;
     }
     
