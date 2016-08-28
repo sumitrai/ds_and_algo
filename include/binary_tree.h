@@ -8,7 +8,7 @@ struct bt_node {
     struct bt_node *right;
 };
 
-struct bt_node *bt_new_node(int val);
-void bt_insert(struct bt_node **node, int val);
-struct bt_node *bt_lookup(struct bt_node *root, int val);
+int bt_new_node(struct bt_node **node, int val);
+int bst_insert(struct bt_node **node, int val);
+struct bt_node *bst_lookup(struct bt_node *root, int val);
 #endif
