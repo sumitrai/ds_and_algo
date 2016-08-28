@@ -1,4 +1,8 @@
+#include <assert.h>
+#include <errno.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "binary_tree.h"
 
@@ -8,6 +12,9 @@ struct bt_node *bt_new_node(int val)
     if (bt_node_ptr) {
         bt_node_ptr->data = val;
         bt_node_ptr->left = bt_node_ptr->right = NULL;
+    } else {
+        fprintf(stderr, "%s: memory allocation failed: %s\n", __func__,
+                strerror(errno));
     }
     return bt_node_ptr;
 }
