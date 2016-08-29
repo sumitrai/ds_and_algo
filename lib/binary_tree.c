@@ -56,3 +56,22 @@ struct bt_node *bst_lookup(struct bt_node *root, int val)
         }
     }
 }
+
+int print_leaf_nodes(struct bt_node *node)
+{
+    if (node == NULL) {
+        fprintf(stderr, "%s: first argument 'node' is NULL\n", __func__);
+        return 1;
+    }
+    // leaf node => left = right = NULL
+    if ((node->left == NULL) && (node->right == NULL)) {
+        printf("Leaf: %d\n", node->data);
+    } else {
+        // not a leaf node: traverse down left and right
+        if (node->left)
+            print_leaf_nodes(node->left);
+        if (node->right)
+            print_leaf_nodes(node->right);
+    }
+    return 0;
+}
