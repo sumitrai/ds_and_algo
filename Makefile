@@ -1,4 +1,4 @@
-TOPDIR=$(PWD)
+TOPDIR=$(shell pwd)
 include $(TOPDIR)/include.mk
 
 all: main test
