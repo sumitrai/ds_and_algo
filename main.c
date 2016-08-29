@@ -1,25 +1,38 @@
-#include "list.h"
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
-int main()
+#include "binary_tree.h"
+
+int main(int argc, char *argv[], char *envp[])
 {
-    int print_flags = 0;
-    struct slist head;
-    struct slist *headp = &head;
-
-    print_flags = PRINT_SLIST_FLAG_PRINT_VAL_ONLY;
-    print_flags |= PRINT_SLIST_FLAG_SKIP_NL_BW_VAL;
+    // Note: Previous Linked-List feedback applied here - root is now on heap
+    struct bt_node *root = NULL;
     
-    INIT_NODE(head, 10);
-    print_all_slist(headp, print_flags);
-    add_node_beg(&headp, create_node(20));
-    add_node_beg(&headp, create_node(30));
-    add_node_beg(&headp, create_node(40));
-    print_all_slist(headp, print_flags);
-    add_node_end(headp, create_node(9));
-    add_node_end(headp, create_node(4));
-    print_all_slist(headp, print_flags);
-    add_node_pos(&headp, create_node(5), 5);
-    add_node_pos(&headp, create_node(1), 1);
-    add_node_pos(&headp, create_node(200), 200);
-    print_all_slist(headp, print_flags);
+    if (bt_new_node(&root, 10)) {
+        fprintf(stderr, "Failed to allocate memory for root node: %s\n",
+                strerror(errno));
+        return 1;
+    }
+    
+    // Add some more element here
+    if (bst_insert(&root, 5)) {
+        fprintf(stderr, "failed to insert %d\n", 5);
+    }
+    if (bst_insert(&root, 6)) {
+        fprintf(stderr, "failed to insert %d\n", 6);
+    }
+
+    if (bst_insert(&root, 4)) {
+        fprintf(stderr, "failed to insert %d\n", 4);
+    }
+
+    // Verify that all elements are inserted
+    printf("%d: %s\n", 10, bst_lookup(root, 10) == NULL ? "not found" : "found");
+    printf("%d: %s\n", 5, bst_lookup(root, 5) == NULL ? "not found" : "found");
+    printf("%d: %s\n", 6, bst_lookup(root, 6) == NULL ? "not found" : "found");
+    printf("%d: %s\n", 4, bst_lookup(root, 4) == NULL ? "not found" : "found");
+    printf("%d: %s\n", 9, bst_lookup(root, 9) == NULL ? "not found" : "found");
+
+    return 0;
 }

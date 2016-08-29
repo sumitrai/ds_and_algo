@@ -1,4 +1,4 @@
-TOPDIR=$(PWD)
+TOPDIR=$(shell pwd)
 include $(TOPDIR)/include.mk
 
 all: main test
@@ -16,7 +16,7 @@ run_tests: test
 
 archive: $(ARCHIVE)
 
-$(ARCHIVE): lib/list.o
+$(ARCHIVE): lib/list.o lib/binary_tree.o
 	ar -r $(ARCHIVE) lib/*.o
 
 .PHONY: tags
