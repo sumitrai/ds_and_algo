@@ -11,24 +11,20 @@ bt_%: bt_%.o $(ARCHIVE)
 	make -C $(TOPDIR) archive  # always update upper libraries
 	$(CC) $^ -o $@
 
-bt_prob1_print_all_leaves: bt_prob1_print_all_leaves.o $(ARCHIVE)
-	$(CC) $^ $(ARCHIVE) -o $@
-
-
-slist_prob1: slist_prob1.o $(ARCHIVE)
-	$(CC) $^ $(ARCHIVE) -o $@
-
-slist: slist.o $(ARCHIVE)
+ut_%: ut_%.o $(ARCHIVE)
+	make -C $(TOPDIR) archive  # always update upper libraries
 	$(CC) $^ -o $@
 
+%: %.o $(ARCHIVE)
+	make -C $(TOPDIR) archive  # always update upper libraries
+	$(CC) $^ -o $@
+	
 .PHONY: run
-run:
+run: $(BINS)
 	@echo "=================================================="
-	@echo "Singly Linked List Begin"
+	@echo "Test Cases Begin"
 	@echo "=================================================="	
-
-	./slist
-	./slist_prob1
+	for file in $(BINS); do ./$$file; done
 	@echo "=================== END =========================="
 
 .PHONY: clean
