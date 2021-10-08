@@ -5,7 +5,15 @@ SRC_FILES=$(shell ls *.c)
 OBJ_FILES=$(SRC_FILES:.c=.o)
 BINS=$(SRC_FILES:.c=)
 
-all: slist slist_prob1
+all: $(BINS)
+
+bt_%: bt_%.o $(ARCHIVE)
+	make -C $(TOPDIR) archive  # always update upper libraries
+	$(CC) $^ -o $@
+
+bt_prob1_print_all_leaves: bt_prob1_print_all_leaves.o $(ARCHIVE)
+	$(CC) $^ $(ARCHIVE) -o $@
+
 
 slist_prob1: slist_prob1.o $(ARCHIVE)
 	$(CC) $^ $(ARCHIVE) -o $@
