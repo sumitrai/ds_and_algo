@@ -1,0 +1,34 @@
+2016-08-29  Sumit Rai  <srai@srai-VirtualBox>
+
+	* binary_tree.c (bt_new_node): prototype changed and added error handling code.
+	now returns 1 on failure, 0 on success.
+	(bst_insert, bst_lookup): renamed from bt_*, and See (bt_new_node)
+	(print_leaf_nodes): new function, print all leaf nodes of a tree.
+
+2016-08-28  Sumit Rai  <srai@srai-VirtualBox>
+
+	* binary_tree.c (bt_insert): added assert check for node argument and *node
+	after it's allocated.
+	(bt_new_node): now prints reason for memory allocation failrue vai strerror().
+
+2016-08-26  Sumit Rai  <srai@srai-VirtualBox>
+
+	* binary_tree.c: new file, binary search tree implementation
+	(bt_new_node): create a new binary tree node on heap
+	(bt_insert): inser a new node into binary tree
+	(bt_lookup): lookup a node into binary tree
+
+2016-08-18  Sumit Rai  <srai@srai-VirtualBox>
+
+	* list.c (print_all_slist): added new argument 'flags' to change
+	printing behaviour.
+	(add_node_pos): optimization: now loops till count == insert_at_pos
+	(add_node_end, add_node_pos): added assert() checks
+
+2016-08-14  Sumit Rai  <srai@srai-MacBookPro>
+
+	* list.c (add_node_beg): deleted unused variable tmp.
+
+	* list.c (add_node_pos): added new function to insert a node at
+	a given position.
+
