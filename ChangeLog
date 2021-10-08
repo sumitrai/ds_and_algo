@@ -1,0 +1,50 @@
+2016-08-29  Sumit Rai  <srai@srai-VirtualBox>
+
+	* main.c (main): added more error handling code and updated code as per
+	new function prototypes.
+
+2016-08-28  Sumit Rai  <srai@srai-VirtualBox>
+
+	* main.c (main): print error to stderr and return 1 if root node allocation fails.
+	(main): now prints reason for memory allocation failure via strerror().
+
+2016-08-26  Sumit Rai  <srai@srai-VirtualBox>
+
+	* include/binary_tree.h: new file, binary tree header
+
+	* main.c: now test binary tree library
+
+2016-08-18  Sumit Rai  <srai@srai-VirtualBox>
+
+	* tests/Makefile (slist_prob1, slist): added new dependency $(ARCHIVE)
+
+	* include/list.h (PRINT_SLIST_FLAG_SKIP_NL_BW_VAL): print value only instead of
+	%p: %d (val).
+	(PRINT_SLIST_FLAG_SKIP_NL_BW_VAL): print all the values in one line.
+	(print_all_slist): takes extra argument flags to change printing behaviour.
+
+	* main.c (main): added print_flags so that print_all_slist
+	function only prints values (not pointers) and no newline b/w values.
+
+	* tests/Makefile: compiles and runs all the tests/
+
+	* include.mk: add new variables and generic *.o target
+	(ARCHIVE): name of .a archive to export
+	(TESTS_DIR): Points to directory contains tests/
+
+	* Makefile (all): new target (calls main and test).
+	(test, run_tests): new targets to compile and run tests/.
+	(tags, ctags, etags): split tags into ctags and etags so that
+	users can only compile for their editor or all of them.
+	(help): updated help
+
+2016-08-15  Sumit Rai  <srai@srai-MacBookPro>
+
+	* Makefile (test): new target to compile tests/
+	(run_tests): run all the tests defined in tests/
+	(tags, ctags, etags): 
+
+2016-08-14  Sumit Rai  <srai@srai-MacBookPro>
+
+	* main.c (main): now tests add_node_pos functionality.
+
