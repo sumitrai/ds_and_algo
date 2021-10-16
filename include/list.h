@@ -3,6 +3,13 @@
 
 #include <stdlib.h>
 
+/* Generic key-value item. */
+typedef struct
+{
+    char *key;
+    int value;
+} item;
+
 struct slist {
     int val;
     struct slist *next;
@@ -13,7 +20,7 @@ struct slist {
 
 #define INIT_NODE(node, value) \
     node.next = NULL; node.val = value
-#define SIZEOF_SLIST (sizeof(struct slist))			   
+#define SIZEOF_SLIST (sizeof(struct slist))
 #define for_each_node(pos, head) \
     for (pos = head; pos != NULL; pos = pos->next)
 #define PRINT_NODE(node) \
